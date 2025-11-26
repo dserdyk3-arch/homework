@@ -1,0 +1,17 @@
+# Программа перевода содержимого файла в словарь
+import time
+import json
+
+with open('Data/purchase_log.txt', encoding='utf-8') as file:
+    lines = file.readlines()
+purchases = {
+    json.loads(line.strip())['user_id']: json.loads(line.strip())['category']
+    for line in lines
+}
+
+count = 0
+for key, value in purchases.items():
+    if count >= 2:
+        break
+    print(f"{key} '{value}'")
+    count += 1
